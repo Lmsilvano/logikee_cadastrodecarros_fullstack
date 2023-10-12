@@ -1,10 +1,16 @@
 import Header from "../components/header";
-
+import Hero from "../components/hero";
+import Nav from "../components/nav";
 function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Header />
-      <main>{children}</main>
+      <Header>
+        <Nav />
+      </Header>
+      <main>
+        <Hero />
+        {children}
+      </main>
     </>
   );
 }
