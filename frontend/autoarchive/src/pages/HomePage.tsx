@@ -1,16 +1,12 @@
 //import axios from 'axios';
 //import { useEffect, useState } from "react";
-//import Layout from "../Layout/Layout";
-
-
+import Layout from "../layout/layout";
 function HomePage() {
-
-    return (
-        <div>
-
-            <p>Home page</p>
-        </div>
-    )
+  return (
+    <Layout>
+      <p>Home page</p>
+    </Layout>
+  );
 }
 
-export default HomePage
+export default HomePage;
