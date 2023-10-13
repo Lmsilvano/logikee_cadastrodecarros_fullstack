@@ -1,47 +1,47 @@
 import styled from "styled-components";
-export const StyledPFormError = styled.p`
-  background: #ff0000ad;
-  color: white;
-  font-weight: 400;
-  margin: 5px auto;
-  text-align: center;
-  width: 100%;
-  border-radius: 5px;
-  transition: 700ms;
-  box-shadow: rgb(0 0 0 / 25%) 0px 2px 7px;
-`;
+export const StyledPFormError = styled.p``;
 
 export const StyledFormContainer = styled.div`
   margin-top: 20px;
-  width: 65%;
-  height: 100vh;
-
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //height: 100vh;
+  .error {
+    background: #ff0000ad;
+    color: white;
+    font-weight: 400;
+    margin: 5px auto;
+    text-align: center;
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+    transition: 700ms;
+    box-shadow: rgb(0 0 0 / 25%) 0px 2px 7px;
+  }
   form {
     width: 100%;
+    max-width: 750px;
     height: auto;
-    gap: 10px;
-    .secondRow,
-    .fifthRow {
-      margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: ${({ theme }) => theme.colors.secondary};
+    padding: 25px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    label {
+      color: ${({ theme }) => theme.colors.tertiary};
+      font-weight: bolder;
+    }
+    section {
+      width: 100%;
       display: flex;
-      align-content: center;
-      justify-content: space-between;
-      align-items: flex-start;
-      width: 90%;
-      height: 65px;
       div {
-        width: 45%;
-        margin-top: 0;
-      }
-      .flexError {
-        margin-top: 0;
-        width: 45%;
+        display: flex;
         flex-direction: column;
-        height: auto;
-        div {
-          margin-top: 0 !important;
-          width: auto !important ;
-        }
+        align-items: center;
       }
     }
     div {
@@ -103,6 +103,14 @@ export const StyledFormContainer = styled.div`
       div input:valid + label::after {
         transform: translateX(0%);
       }
+    }
+    button {
+      border: none;
+      padding: 6px;
+      width: 150px;
+      background-color: ${({ theme }) => theme.colors.tertiary};
+      color: white;
+      border-radius: 5px;
     }
   }
 `;

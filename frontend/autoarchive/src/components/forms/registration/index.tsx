@@ -3,16 +3,18 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { StyledFormContainer } from "./FormContainer.style";
 import { formatCurrency } from "../../../utils/masks.js";
+import { carData, carColors } from "../../../utils/fakeData.js";
 interface MarcaModel {
   marca: string;
   modelos: string[];
 }
 
+// Simula o Recebimento de Marcas, Modelos e Cores de Carros da API
 const fetchCarData = async (): Promise<MarcaModel[]> => {
-  return [
-    { marca: "Ford", modelos: ["Fiesta", "Focus", "Mustang"] },
-    { marca: "Toyota", modelos: ["Camry", "Corolla", "Rav4"] },
-  ];
+  return carData;
+};
+const fetchCarColors = async (): Promise<string[]> => {
+  return carColors;
 };
 
 //
@@ -25,8 +27,11 @@ const schema = Yup.object().shape({
   modelo: Yup.string().required("Campo obrigatório"),
   anoFabricacao: Yup.number()
     .required("Campo obrigatório")
-    .min(1900, "Ano inválido")
-    .max(anoAtual + 1, "Ano Inválido"),
+    .min(1900, `Ano Inválido: digite um valor entre 1900 e ${anoAtual + 1}`)
+    .max(
+      anoAtual + 1,
+      `Ano Inválido: digite um valor entre 1900 e ${anoAtual + 1}`
+    ),
   preco: Yup.string().required("Campo obrigatório"),
   chassi: Yup.string()
     .matches(
@@ -41,10 +46,13 @@ const schema = Yup.object().shape({
 const CarForm: React.FC = () => {
   const [marcas, setMarcas] = useState<MarcaModel[]>([]);
   const [modelos, setModelos] = useState<string[]>([]);
+  const [cores, setCarColors] = useState<string[]>([]);
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchCarData(); //
+      const colorsData = await fetchCarColors(); //
       setMarcas(data);
+      setCarColors(colorsData);
     };
 
     fetchData();
@@ -76,44 +84,56 @@ const CarForm: React.FC = () => {
       >
         {({ handleChange, values }) => (
           <Form>
-            <div>
-              <label htmlFor="marca">Marca</label>
-              <Field
-                as="select"
-                id="marca"
-                name="marca"
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                  handleChange(e);
-                  handleMarcaChange(e);
-                }}
-              >
-                <option value="" label="Selecione a Marca" />
-                {marcas.map((marca) => (
-                  <option
-                    key={marca.marca}
-                    value={marca.marca}
-                    label={marca.marca}
-                  />
-                ))}
-              </Field>
-              <ErrorMessage name="marca" component="div" className="error" />
-            </div>
+            <section>
+              <div>
+                <label htmlFor="marca">Marca</label>
+                <Field
+                  as="select"
+                  id="marca"
+                  name="marca"
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                    handleChange(e);
+                    handleMarcaChange(e);
+                  }}
+                >
+                  <option value="" label="Selecione a Marca" />
+                  {marcas.map((marca) => (
+                    <option
+                      key={marca.marca}
+                      value={marca.marca}
+                      label={marca.marca}
+                    />
+                  ))}
+                </Field>
+                <ErrorMessage name="marca" component="div" className="error" />
+              </div>
 
-            <div>
-              <label htmlFor="modelo">Modelo</label>
-              <Field
-                as="select"
-                id="modelo"
-                name="modelo"
-                onChange={handleChange}
-              >
-                <option value="" label="Selecione o Modelo" />
-                {modelos.map((modelo: string) => (
-                  <option key={modelo} value={modelo} label={modelo} />
-                ))}
-              </Field>
-              <ErrorMessage name="modelo" component="div" className="error" />
-            </div>
+              <div>
+                <label htmlFor="modelo">Modelo</label>
+                <Field
+                  as="select"
+                  id="modelo"
+                  name="modelo"
+                  onChange={handleChange}
+                >
+                  <option value="" label="Selecione o Modelo" />
+                  {modelos.map((modelo: string) => (
+                    <option key={modelo} value={modelo} label={modelo} />
+                  ))}
+                </Field>
+                <ErrorMessage name="modelo" component="div" className="error" />
+              </div>
+              <div>
+                <label htmlFor="cor">Cor</label>
+                <Field as="select" id="cor" name="cor" onChange={handleChange}>
+                  <option value="" label="Selecione a Cor" />
+                  {cores.map((modelo: string) => (
+                    <option key={modelo} value={modelo} label={modelo} />
+                  ))}
+                </Field>
+                <ErrorMessage name="cor" component="div" className="error" />
+              </div>
+            </section>
 
             <div>
               <div>
@@ -131,10 +151,9 @@ const CarForm: React.FC = () => {
               <ErrorMessage
                 name="anoFabricacao"
                 component="div"
-                className="flexError"
+                className="error"
               />
               <div>
-                <label htmlFor="preco">Preço</label>
                 <Field
                   type="text"
                   id="preco"
@@ -149,19 +168,27 @@ const CarForm: React.FC = () => {
                       },
                     } as React.ChangeEvent<HTMLInputElement>);
                   }}
+                  autoComplete="off"
+                  required
                 />
+                <label htmlFor="preco">
+                  <span>Preço</span>
+                </label>
               </div>
               <ErrorMessage name="preco" component="div" className="error" />
               <div>
-                <label htmlFor="chassi">Chassi</label>
-                <Field type="text" id="chassi" name="chassi" />
+                <Field
+                  type="text"
+                  id="chassi"
+                  name="chassi"
+                  autoComplete="off"
+                  required
+                />
+                <label htmlFor="chassi">
+                  <span>Chassi</span>
+                </label>
               </div>
               <ErrorMessage name="chassi" component="div" className="error" />
-              <div>
-                <label htmlFor="cor">Cor</label>
-                <Field type="text" id="cor" name="cor" />
-              </div>
-              <ErrorMessage name="cor" component="div" className="error" />
             </div>
 
             <button type="submit">Enviar</button>
