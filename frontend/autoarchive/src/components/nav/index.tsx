@@ -8,10 +8,10 @@ const Nav = () => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/cadastrar">Cadastrar </Link>
+          <Link to="/Cadastrar">Cadastrar </Link>
         </li>
         <li>
-          <Link to="/visualizar">Visualizar </Link>
+          <Link to="/Visualizar">Visualizar </Link>
         </li>
       </ul>
     </StyledNav>

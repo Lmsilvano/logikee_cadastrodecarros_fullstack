@@ -10,4 +10,5 @@ export const StyledHeader = styled.header`
   justify-content: space-around;
   align-items: center;
   position: fixed;
+  z-index: 999;
 `;
