@@ -11,7 +11,8 @@ export const StyledNav = styled.nav`
         text-decoration: none;
         letter-spacing: 0.1rem;
         color: ${({ theme }) => theme.colors.tertiary};
-        font-weight: 500;
+        font-weight: 600;
+        padding: 5px;
         &:hover {
           font-weight: bolder;
           transition: 0.2s;
