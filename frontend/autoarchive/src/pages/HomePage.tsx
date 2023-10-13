@@ -1,5 +1,3 @@
-//import axios from 'axios';
-//import { useEffect, useState } from "react";
 import CarRegSvg from "../assets/CarReg";
 import EyeSvg from "../assets/Eye";
 import HomeCards from "../components/cards/home";

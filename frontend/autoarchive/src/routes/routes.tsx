@@ -7,7 +7,7 @@ export const privateRoutes = [
     element: <HomePage />,
   },
   {
-    path: "autoexplore",
+    path: "Visualizar",
     element: <AutoExplorePage />,
   },
   {
