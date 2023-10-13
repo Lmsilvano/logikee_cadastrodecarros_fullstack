@@ -4,7 +4,7 @@ export const StyledImageContainer = styled.div`
   min-width: 100vw;
   min-height: 54vh;
   padding-top: 5px;
-  position: fixed;
+  //position: fixed;
   background-image: url(${fordFinal});
   background-position: center;
   background-size: cover;
