@@ -77,3 +77,98 @@ export const carData = [
   ]
 
   export const carColors = ['Vermelho', 'Azul', 'Verde', 'Preto', 'Branco', 'Prata', 'Amarelo', 'Laranja', 'Roxo', 'Cinza'];
+
+
+
+  export const carros = [
+    {
+      id: '1',
+      marca: 'Ford',
+      modelo: 'Fiesta',
+      cor: 'Azul',
+      preco: '25000',
+      chassi: 'ABC123',
+      ano: '2018',
+    },
+    {
+      id: '2',
+      marca: 'Toyota',
+      modelo: 'Camry',
+      cor: 'Vermelho',
+      preco: '35000',
+      chassi: 'DEF456',
+      ano: '2020',
+    },
+    {
+      id: '3',
+      marca: 'Honda',
+      modelo: 'Civic',
+      cor: 'Preto',
+      preco: '30000',
+      chassi: 'GHI789',
+      ano: '2019',
+    },
+    {
+      id: '4',
+      marca: 'Chevrolet',
+      modelo: 'Cruze',
+      cor: 'Branco',
+      preco: '28000',
+      chassi: 'JKL012',
+      ano: '2017',
+    },
+    {
+      id: '5',
+      marca: 'BMW',
+      modelo: 'X5',
+      cor: 'Prata',
+      preco: '50000',
+      chassi: 'MNO345',
+      ano: '2022',
+    },
+    {
+      id: '6',
+      marca: 'Toyota',
+      modelo: 'Tacoma',
+      cor: 'Verde',
+      preco: '40000',
+      chassi: 'PQR678',
+      ano: '2021',
+    },
+    {
+      id: '7',
+      marca: 'Honda',
+      modelo: 'Pilot',
+      cor: 'Amarelo',
+      preco: '45000',
+      chassi: 'STU901',
+      ano: '2016',
+    },
+    {
+      id: '8',
+      marca: 'Chevrolet',
+      modelo: 'Silverado',
+      cor: 'Laranja',
+      preco: '38000',
+      chassi: 'VWX234',
+      ano: '2015',
+    },
+    {
+      id: '9',
+      marca: 'BMW',
+      modelo: 'i8',
+      cor: 'Roxo',
+      preco: '70000',
+      chassi: 'YZA567',
+      ano: '2023',
+    },
+    {
+      id: '10',
+      marca: 'Toyota',
+      modelo: 'Land Cruiser',
+      cor: 'Cinza',
+      preco: '60000',
+      chassi: 'BCD890',
+      ano: '2014',
+    },
+  ];
