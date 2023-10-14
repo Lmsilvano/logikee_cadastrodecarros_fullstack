@@ -45,7 +45,7 @@ function AutoExplorePage() {
       <Layout guidance="column">
         <input
           type="text"
-          placeholder="Procure por Modelo/Marca/Chassi"
+          placeholder="Procure por Modelo, Marca ou Chassi"
           value={filterCars}
           onChange={(e) => setFilterCars(e.target.value)}
           className="searchInput"

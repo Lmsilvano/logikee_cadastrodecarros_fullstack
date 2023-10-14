@@ -8,7 +8,7 @@ function HomePage() {
       <HomeCards
         icon={<EyeSvg />}
         title="Visualizar Carros"
-        text="Também é possível editar e deletar os carros cadastrados"
+        text="Também é possível editar, deletar e buscar os carros."
         buttontext="Visualizar"
       />
       <HomeCards
