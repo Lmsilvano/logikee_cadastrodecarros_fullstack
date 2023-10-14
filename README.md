@@ -33,7 +33,7 @@ Retorna todos os carros cadastrados.
  recebe os dados do véiculo {Marca, Modelo, Cor, Chassi, Preço, Ano} no corpo da requisição e cria um novo registro.
  
 #### |Put| http://localhost:3001/api/v1/edit-car/:chassi
-recebe através de param na url da requisição o dado do carro a ser editado, no body os dados a serem alterados {Marca, Modelo, Cor, Chassi, Preço, Ano}.
+recebe através de param na url da requisição o chassi do carro a ser editado, realiza a busca dp registro, no body devem ir os demais dados a serem alterados {Marca, Modelo, Cor, Preço, Ano}.
 
 #### |Delete| http://localhost:3001/api/v1/delete-car/:chassi
 recebe através de param na url da requisição o dado do carro a ser deletado.
