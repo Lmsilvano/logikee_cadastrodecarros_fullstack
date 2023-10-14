@@ -20,6 +20,18 @@ export const StyledFormContainer = styled.div`
     transition: 700ms;
     box-shadow: rgb(0 0 0 / 25%) 0px 2px 7px;
   }
+  .sucess {
+    background: #00ff48e4;
+    color: white;
+    font-weight: 400;
+    margin: 5px auto;
+    text-align: center;
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+    transition: 700ms;
+    box-shadow: rgb(0 0 0 / 25%) 0px 2px 7px;
+  }
   form {
     width: 100%;
     max-width: 750px;
@@ -124,6 +136,18 @@ export const StyledFormEditContainer = styled.div`
   //height: 100vh;
   .error {
     background: #ff0000ad;
+    color: white;
+    font-weight: 400;
+    margin: 5px auto;
+    text-align: center;
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+    transition: 700ms;
+    box-shadow: rgb(0 0 0 / 25%) 0px 2px 7px;
+  }
+  .sucess {
+    background: #00ff48e4;
     color: white;
     font-weight: 400;
     margin: 5px auto;

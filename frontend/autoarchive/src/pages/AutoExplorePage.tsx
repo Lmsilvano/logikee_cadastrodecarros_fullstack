@@ -1,38 +1,43 @@
-//import axios from 'axios';
+import axios from "axios";
 import { useEffect, useState } from "react";
 import Layout from "../layout/Layout";
 import CarCards from "../components/cards/cars";
-import { carros } from "../utils/fakeData";
 import { CarProps } from "../utils/interfaces/carProps";
-
-const fetchCarData = async (): Promise<CarProps[]> => {
-  return carros;
-};
 
 function AutoExplorePage() {
   const [carData, setCarData] = useState<CarProps[]>([]);
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchCarData(); //
-      setCarData(data);
+      await axios
+        .get("/api/v1/cars")
+        .then(({ data }) => {
+          setCarData(data.response);
+        })
+        .catch((error) => {
+          console.error(
+            "Erro ao criar registro:",
+            error.response ? error.response.data : error.message
+          );
+          setCarData([]);
+        }); //
     };
 
     fetchData();
   }, []);
 
-  if (carData) {
+  if (carData.length > 0) {
     return (
       <Layout>
         {carData.map((car, i) => {
           return (
             <CarCards
               key={i}
-              id={car.id}
+              id={car.chassi}
               marca={car.marca}
               modelo={car.modelo}
               cor={car.cor}
-              ano={car.ano}
-              preco={car.preco}
+              ano={car.ano.toString()}
+              preco={car.preco.toString()}
               chassi={car.chassi}
             />
           );
@@ -42,7 +47,7 @@ function AutoExplorePage() {
   } else {
     return (
       <Layout>
-        <p>Sem carros Cadastrados no momento</p>
+        <h3>Sem carros Cadastrados no momento</h3>
       </Layout>
     );
   }
