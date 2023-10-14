@@ -20,7 +20,26 @@ export const StyledFormContainer = styled.div`
     transition: 700ms;
     box-shadow: rgb(0 0 0 / 25%) 0px 2px 7px;
   }
+  .sucess {
+    background: #00ff48e4;
+    color: white;
+    font-weight: 400;
+    margin: 5px auto;
+    text-align: center;
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+    transition: 700ms;
+    box-shadow: rgb(0 0 0 / 25%) 0px 2px 7px;
+  }
   form {
+    p {
+      color: ${({ theme }) => theme.colors.tertiary};
+      font-weight: 500;
+      span {
+        font-weight: bolder;
+      }
+    }
     width: 100%;
     max-width: 750px;
     height: auto;
@@ -134,6 +153,18 @@ export const StyledFormEditContainer = styled.div`
     transition: 700ms;
     box-shadow: rgb(0 0 0 / 25%) 0px 2px 7px;
   }
+  .sucess {
+    background: #00ff48e4;
+    color: white;
+    font-weight: 400;
+    margin: 5px auto;
+    text-align: center;
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+    transition: 700ms;
+    box-shadow: rgb(0 0 0 / 25%) 0px 2px 7px;
+  }
   form {
     width: 100%;
     max-width: 750px;
@@ -217,13 +248,19 @@ export const StyledFormEditContainer = styled.div`
         transform: translateX(0%);
       }
     }
-    button {
-      border: none;
-      padding: 6px;
-      width: 150px;
-      background-color: ${({ theme }) => theme.colors.tertiary};
-      color: white;
-      border-radius: 5px;
+    .formFooter {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      button {
+        border: none;
+        width: 40%;
+        padding: 6px;
+        //width: 150px;
+        background-color: ${({ theme }) => theme.colors.tertiary};
+        color: white;
+        border-radius: 5px;
+      }
     }
   }
 `;

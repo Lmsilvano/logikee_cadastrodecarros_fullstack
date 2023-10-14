@@ -1,17 +1,38 @@
 import { StyledNav } from "./Nav.style";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const Nav = () => {
   return (
     <StyledNav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <NavLink
+            to="/"
+            className={({ isActive }) => {
+              return isActive ? "activenav" : "";
+            }}
+          >
+            Home
+          </NavLink>
         </li>
         <li>
-          <Link to="/Cadastrar">Cadastrar </Link>
+          <NavLink
+            to="/Cadastrar"
+            className={({ isActive }) => {
+              return isActive ? "activenav" : "";
+            }}
+          >
+            Cadastrar{" "}
+          </NavLink>
         </li>
         <li>
-          <Link to="/Visualizar">Visualizar </Link>
+          <NavLink
+            to="/Visualizar"
+            className={({ isActive }) => {
+              return isActive ? "activenav" : "";
+            }}
+          >
+            Visualizar{" "}
+          </NavLink>
         </li>
       </ul>
     </StyledNav>

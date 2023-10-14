@@ -1,6 +1,7 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { schema } from "./yupSchema";
 import {
   StyledFormContainer,
   StyledFormEditContainer,
@@ -16,32 +17,10 @@ interface CarFormProps {
 
 //
 
-const dataAtual = new Date();
-const anoAtual = dataAtual.getFullYear();
-
-const schema = Yup.object().shape({
-  marca: Yup.string().required("Campo obrigatório"),
-  modelo: Yup.string().required("Campo obrigatório"),
-  anoFabricacao: Yup.number()
-    .required("Campo obrigatório")
-    .min(1900, `Ano Inválido: digite um valor entre 1900 e ${anoAtual + 1}`)
-    .max(
-      anoAtual + 1,
-      `Ano Inválido: digite um valor entre 1900 e ${anoAtual + 1}`
-    ),
-  preco: Yup.string().required("Campo obrigatório"),
-  chassi: Yup.string()
-    .matches(
-      /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{6}$/,
-      "Deve conter exatamente 6 caracteres alfanuméricos"
-    )
-    .required("Campo obrigatório"),
-
-  cor: Yup.string().required("Campo obrigatório"),
-});
-
 const CarForm: React.FC<CarFormProps> = ({ edit }) => {
   const [modelos, setModelos] = useState<string[]>([]);
+  const [error, setError] = useState<string>("");
+  const [sucess, setSucess] = useState<string>("");
   const { carDataContext, setEditString, marcaModelContext, carColorsContext } =
     useEditContext();
 
@@ -75,13 +54,57 @@ const CarForm: React.FC<CarFormProps> = ({ edit }) => {
             cor: "",
           }}
           validationSchema={schema}
-          onSubmit={(values) => {
+          onSubmit={async (values, { resetForm }) => {
             //
-            console.log(values);
+            const convertedValues = {
+              marca: values.marca,
+              modelo: values.modelo,
+              cor: values.cor,
+              chassi: values.chassi,
+              ano: Number(values.anoFabricacao),
+              preco: Number(values.preco.replace(/[.,]/g, "")),
+            };
+            await axios
+              .post("/api/v1/create-car", convertedValues)
+              .then((response) => {
+                console.log("Registro criado com sucesso:", response.data);
+                setSucess("Veículo Cadastrado com sucesso");
+                setTimeout(() => {
+                  setSucess("");
+                }, 3500);
+                resetForm();
+              })
+              .catch((error) => {
+                console.error(
+                  "Erro ao criar registro:",
+                  error.response ? error.response.data : error.message
+                );
+                try {
+                  const { code } = error.response.data.error;
+                  if (code === 11000) {
+                    setError("Chassi já cadastrado para outro veículo");
+                    setTimeout(() => {
+                      setError("");
+                    }, 3500);
+                  }
+                } catch {
+                  setError(
+                    "Erro ao cadastrar o veículo, verique o status do servidor"
+                  );
+                  setTimeout(() => {
+                    setError("");
+                  }, 3500);
+                }
+              });
+            console.log(convertedValues);
           }}
         >
           {({ handleChange, values }) => (
             <Form>
+              <p>
+                <span>Dica</span>: Selecione primeiro a Marca para visualizar os
+                modelos disponíveis.
+              </p>
               <section>
                 <div>
                   <label htmlFor="marca">Marca</label>
@@ -172,6 +195,7 @@ const CarForm: React.FC<CarFormProps> = ({ edit }) => {
                     value={formatCurrency(values.preco)}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       const formattedValue = formatCurrency(e.target.value);
+                      console.log(formattedValue);
                       handleChange({
                         target: {
                           name: "preco",
@@ -203,6 +227,8 @@ const CarForm: React.FC<CarFormProps> = ({ edit }) => {
               </div>
 
               <button type="submit">Enviar</button>
+              {error && <p className="error">{error}</p>}
+              {sucess && <p className="sucess">{sucess}</p>}
             </Form>
           )}
         </Formik>
@@ -221,10 +247,50 @@ const CarForm: React.FC<CarFormProps> = ({ edit }) => {
             cor: carDataContext.cor,
           }}
           validationSchema={schema}
-          onSubmit={(values) => {
+          onSubmit={async (values) => {
             //
-            setEditString("");
-            console.log(values, "EDITADO");
+            const convertedValues = {
+              marca: values.marca,
+              modelo: values.modelo,
+              cor: values.cor,
+              chassi: values.chassi,
+              ano: Number(values.anoFabricacao),
+              preco: Number(values.preco.replace(/[.,]/g, "")),
+            };
+            //
+            await axios
+              .put(`/api/v1/edit-car/${values.chassi}`, convertedValues)
+              .then((response) => {
+                console.log("Registro criado com sucesso:", response.data);
+                setSucess("Veículo Editado com Sucesso");
+                setTimeout(() => {
+                  setSucess("");
+                  setEditString("");
+                  //window.location.reload();
+                }, 750);
+              })
+              .catch((error) => {
+                console.error(
+                  "Erro ao criar registro:",
+                  error.response ? error.response.data : error.message
+                );
+                try {
+                  const { code } = error.response.data.error;
+                  if (code === 11000) {
+                    setError("Chassi já cadastrado para outro veículo");
+                    setTimeout(() => {
+                      setError("");
+                    }, 3500);
+                  }
+                } catch {
+                  setError(
+                    "Erro ao atualizar o veículo, verique o status do servidor"
+                  );
+                  setTimeout(() => {
+                    setError("");
+                  }, 3500);
+                }
+              });
           }}
         >
           {({ handleChange, values }) => (
@@ -350,7 +416,12 @@ const CarForm: React.FC<CarFormProps> = ({ edit }) => {
                 <ErrorMessage name="chassi" component="div" className="error" />
               </div>
 
-              <button type="submit">Confirmar Edição</button>
+              <div className="formFooter">
+                <button type="submit">Confirmar</button>
+                <button onClick={() => setEditString("")}>Cancelar</button>
+              </div>
+              {error && <p className="error">{error}</p>}
+              {sucess && <p className="sucess">{sucess}</p>}
             </Form>
           )}
         </Formik>
