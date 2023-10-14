@@ -1,8 +1,12 @@
 # Sobre o Projeto
 Este projeto foi desenvolvido como parte de um teste técnico para a etapa de seleção de estagiário em Desenvolvimento Web Full Stack. O escopo do teste envolveu a criação de uma aplicação completa, abrangendo tanto o frontend quanto o backend.
-- [O Backend Express.js](#o-backend-express.js)
+
+
 - [Instruções para rodar o projeto](#instruções-para-rodar-o-projeto)
+  
 - [Telas](#telas)
+
+  
 ### Objetivo
 O objetivo principal deste projeto era demonstrar habilidades no desenvolvimento web utilizando tecnologias modernas, especialmente React TSX para o frontend e Node.js com Express e Mongoose para o backend. A tarefa consistia em construir uma aplicação para o gerenciamento de veículos, oferecendo funcionalidades como cadastro, edição, visualização, pesquisa e exclusão de registros.
 Se você está revisando este repositório como parte do processo seletivo, agradeço pela oportunidade e fico à disposição para quaisquer dúvidas ou informações adicionais sobre a implementação.
