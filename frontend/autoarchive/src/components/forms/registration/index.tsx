@@ -101,6 +101,10 @@ const CarForm: React.FC<CarFormProps> = ({ edit }) => {
         >
           {({ handleChange, values }) => (
             <Form>
+              <p>
+                <span>Dica</span>: Selecione primeiro a Marca para visualizar os
+                modelos disponíveis.
+              </p>
               <section>
                 <div>
                   <label htmlFor="marca">Marca</label>
@@ -191,6 +195,7 @@ const CarForm: React.FC<CarFormProps> = ({ edit }) => {
                     value={formatCurrency(values.preco)}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       const formattedValue = formatCurrency(e.target.value);
+                      console.log(formattedValue);
                       handleChange({
                         target: {
                           name: "preco",
@@ -261,8 +266,8 @@ const CarForm: React.FC<CarFormProps> = ({ edit }) => {
                 setTimeout(() => {
                   setSucess("");
                   setEditString("");
-                  window.location.reload();
-                }, 3500);
+                  //window.location.reload();
+                }, 2000);
               })
               .catch((error) => {
                 console.error(
@@ -411,7 +416,10 @@ const CarForm: React.FC<CarFormProps> = ({ edit }) => {
                 <ErrorMessage name="chassi" component="div" className="error" />
               </div>
 
-              <button type="submit">Confirmar Edição</button>
+              <div className="formFooter">
+                <button type="submit">Confirmar</button>
+                <button onClick={() => setEditString("")}>Cancelar</button>
+              </div>
               {error && <p className="error">{error}</p>}
               {sucess && <p className="sucess">{sucess}</p>}
             </Form>

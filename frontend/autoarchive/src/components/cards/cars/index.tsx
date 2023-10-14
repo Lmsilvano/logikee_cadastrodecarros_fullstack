@@ -20,6 +20,7 @@ const CarCards: React.FC<CarProps> = ({
 }) => {
   const { editString, setEditString, setCarDataContext } = useEditContext();
   const [showDeleteModal, setShowDeleteModal] = useState<string>("");
+  const [deleteError, setDeleteError] = useState<string>("");
 
   useEffect(() => {
     console.log("renderizou carsCard");
@@ -30,19 +31,18 @@ const CarCards: React.FC<CarProps> = ({
   };
 
   //
-  const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    // try {
-    //   const response = await axios.delete(
-    //     `http://sua-api.com/api/car/${e.currentTarget.id}`
-    //   );
-    //   console.log(response.data);
-    //   // Faça algo após a deleção, se necessário
-    // } catch (error) {
-    //   console.error("Erro ao deletar veículo:", error);
-    //   // Lide com o erro, se necessário
-    // }
-    console.log(e, "booom deletou");
-    setShowDeleteModal("");
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(
+        `/api/v1/delete-car/${showDeleteModal}`
+      );
+      setShowDeleteModal("");
+      console.log(response.data);
+      setEditString("oi");
+    } catch (error) {
+      console.error("Erro ao deletar veículo:", error);
+      setDeleteError("error");
+    }
   };
 
   if (editString !== id) {
@@ -82,7 +82,10 @@ const CarCards: React.FC<CarProps> = ({
           <>
             <div className="modal_delete">
               <Modal.Dialog>
-                <Modal.Header closeButton>
+                <Modal.Header
+                  closeButton
+                  onClick={() => setShowDeleteModal("")}
+                >
                   <Modal.Title>Tem certeza disto?</Modal.Title>
                 </Modal.Header>
 
@@ -91,17 +94,22 @@ const CarCards: React.FC<CarProps> = ({
                 </Modal.Body>
 
                 <Modal.Footer>
-                  <Button variant="secondary">Fechar</Button>
                   <Button
-                    variant="danger"
-                    onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-                      handleDelete(e)
-                    }
+                    variant="secondary"
+                    onClick={() => setShowDeleteModal("")}
                   >
+                    Fechar
+                  </Button>
+                  <Button variant="danger" onClick={() => handleDelete()}>
                     Confirmar
                   </Button>
                 </Modal.Footer>
               </Modal.Dialog>
+              {deleteError && (
+                <p className="deleteError">
+                  Erro ao deletar: Verifique a conexão com o servidor
+                </p>
+              )}
             </div>
             <div className="overlay"></div>
           </>

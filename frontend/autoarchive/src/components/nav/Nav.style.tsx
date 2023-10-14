@@ -7,6 +7,13 @@ export const StyledNav = styled.nav`
     text-decoration: none;
     li {
       padding-left: 15px;
+      .activenav {
+        font-weight: bolder;
+        transition: 0.2s;
+        letter-spacing: 0.1rem;
+        color: white;
+        background-color: rgba(107, 15, 18, 1);
+      }
       a {
         text-decoration: none;
         letter-spacing: 0.1rem;

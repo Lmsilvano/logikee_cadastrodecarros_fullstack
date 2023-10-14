@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import Layout from "../layout/Layout";
 import CarCards from "../components/cards/cars";
 import { CarProps } from "../utils/interfaces/carProps";
-
+import { useEditContext } from "../context/editContext";
 function AutoExplorePage() {
   const [carData, setCarData] = useState<CarProps[]>([]);
+  const { editString } = useEditContext();
   useEffect(() => {
     const fetchData = async () => {
       await axios
@@ -23,7 +24,8 @@ function AutoExplorePage() {
     };
 
     fetchData();
-  }, []);
+    console.log("renderizei na explore");
+  }, [editString]);
 
   if (carData.length > 0) {
     return (

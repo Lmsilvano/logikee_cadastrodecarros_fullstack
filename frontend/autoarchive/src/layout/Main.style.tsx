@@ -22,6 +22,18 @@ export const StyledMain = styled.main`
       display: flex;
       justify-content: space-evenly;
     }
+    .deleteError {
+      background: #ff0000ad;
+      color: white;
+      font-weight: 400;
+      margin: 5px auto;
+      text-align: center;
+      width: 100%;
+      height: 25px;
+      border-radius: 5px;
+      transition: 700ms;
+      box-shadow: rgb(0 0 0 / 25%) 0px 2px 7px;
+    }
   }
   .overlay {
     position: fixed;

@@ -25,13 +25,13 @@ export const StyledCarCardsContainer = styled.div`
 `;
 
 export const StyledCarCardsEditContainer = styled.div`
-  width: 350px;
-  height: 620px;
+  width: 310px;
+  height: 480px;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 25px 15px 25px 15px;
+  padding: 15px 15px 15px 15px;
   transition: 0.7s;
 `;

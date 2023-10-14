@@ -4,8 +4,8 @@ export const StyledHomeCardsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 22vw;
-  height: 350px;
-  padding: 8px 15px 5px 15px;
+  height: 370px;
+  padding: 8px 15px 15px 15px;
   background-color: ${({ theme }) => theme.colors.secondary};
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   .upperCardBody {
@@ -35,10 +35,11 @@ export const StyledHomeCardsContainer = styled.div`
     align-items: center;
     flex: 2;
     margin-top: 20px;
-    justify-content: space-evenly;
+    justify-content: space-between;
     p {
       color: ${({ theme }) => theme.colors.tertiary};
       font-weight: 400;
+      text-align: justify;
     }
     a {
       text-decoration: none;
