@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const StyledCarCardsContainer = styled.div`
+export const StyledCarCards = styled.div`
   width: 252px;
   height: 460px;
-  border: 1px solid black;
+  border: 1px solid ${({ theme }) => theme.colors.tertiary};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,14 +24,23 @@ export const StyledCarCardsContainer = styled.div`
   }
 `;
 
-export const StyledCarCardsEditContainer = styled.div`
+export const StyledCarCardsEdit = styled.div`
   width: 310px;
   height: 480px;
-  border: 1px solid black;
+  border: 1px solid ${({ theme }) => theme.colors.tertiary};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 15px 15px 15px 15px;
   transition: 0.7s;
+`;
+
+export const StyledCarCardsContainer = styled.section`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  flex: 1;
 `;

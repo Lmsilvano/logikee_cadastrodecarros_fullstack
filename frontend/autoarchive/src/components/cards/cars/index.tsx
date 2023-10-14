@@ -2,10 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import {
-  StyledCarCardsContainer,
-  StyledCarCardsEditContainer,
-} from "./CarCardsContainer.style";
+import { StyledCarCardsEdit, StyledCarCards } from "./CarCards.style";
 import { CarProps } from "../../../utils/interfaces/carProps";
 import { useEditContext } from "../../../context/editContext";
 import CarForm from "../../forms/registration";
@@ -48,7 +45,7 @@ const CarCards: React.FC<CarProps> = ({
   if (editString !== id) {
     return (
       <>
-        <StyledCarCardsContainer>
+        <StyledCarCards>
           <div className="upperCardBody">
             <h3>{marca}</h3>
             <h3>{modelo}</h3>
@@ -77,7 +74,7 @@ const CarCards: React.FC<CarProps> = ({
               Excluir
             </button>
           </div>
-        </StyledCarCardsContainer>
+        </StyledCarCards>
         {showDeleteModal && (
           <>
             <div className="modal_delete">
@@ -118,9 +115,9 @@ const CarCards: React.FC<CarProps> = ({
     );
   } else {
     return (
-      <StyledCarCardsEditContainer>
+      <StyledCarCardsEdit>
         <CarForm edit="yes"></CarForm>
-      </StyledCarCardsEditContainer>
+      </StyledCarCardsEdit>
     );
   }
 };

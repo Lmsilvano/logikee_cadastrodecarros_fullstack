@@ -1,12 +1,22 @@
 import styled from "styled-components";
 
-export const StyledMain = styled.main`
-  padding: 4vh 15vw 2vh 15vw;
+interface StyledMainProps {
+  isVertical: boolean;
+}
+
+export const StyledMain = styled.main<StyledMainProps>`
+  padding: 4vh 10vw 2vh 10vw;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: ${(props) => (props.isVertical ? "column" : "row-reverse")};
   gap: 25px;
   justify-content: space-around;
   flex-wrap: wrap;
+
+  .searchInput {
+    flex: 1;
+    border: 1px solid ${({ theme }) => theme.colors.tertiary};
+    padding: 5px;
+  }
 
   .modal_delete {
     position: fixed;

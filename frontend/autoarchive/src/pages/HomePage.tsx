@@ -4,7 +4,7 @@ import HomeCards from "../components/cards/home";
 import Layout from "../layout/Layout";
 function HomePage() {
   return (
-    <Layout>
+    <Layout guidance="">
       <HomeCards
         icon={<EyeSvg />}
         title="Visualizar Carros"

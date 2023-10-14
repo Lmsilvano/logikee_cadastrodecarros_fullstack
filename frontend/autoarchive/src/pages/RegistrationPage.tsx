@@ -2,7 +2,7 @@ import CarForm from "../components/forms/registration";
 import Layout from "../layout/Layout";
 function HomePage() {
   return (
-    <Layout>
+    <Layout guidance="">
       <CarForm edit="" />
     </Layout>
   );

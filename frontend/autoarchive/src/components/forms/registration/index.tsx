@@ -267,7 +267,7 @@ const CarForm: React.FC<CarFormProps> = ({ edit }) => {
                   setSucess("");
                   setEditString("");
                   //window.location.reload();
-                }, 2000);
+                }, 750);
               })
               .catch((error) => {
                 console.error(
