@@ -66,8 +66,9 @@ recebe através de param na url da requisição o dado do carro a ser deletado.
 - No diretório /backend, abra o terminal de sua preferência e execute:
 ```bash
 npm install
-Isso instalará todas as dependências necessárias para o projeto.
 ```
+Isso instalará todas as dependências necessárias para o projeto.
+
 -  | Passo Opcional | Em seguida, mantendo-se no diretório /backend popule o banco de dados com novos registros: 
 ```bash
 node seed.js
