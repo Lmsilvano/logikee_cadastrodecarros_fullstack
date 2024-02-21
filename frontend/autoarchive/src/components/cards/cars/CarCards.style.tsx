@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const StyledCarCards = styled.div`
-  width: 252px;
-  height: 460px;
+  //width: 252px;
+  //height: 460px;
   border: 1px solid ${({ theme }) => theme.colors.tertiary};
   display: flex;
   flex-direction: column;
@@ -25,8 +25,8 @@ export const StyledCarCards = styled.div`
 `;
 
 export const StyledCarCardsEdit = styled.div`
-  width: 310px;
-  height: 480px;
+  //width: 310px;
+  //height: 480px;
   border: 1px solid ${({ theme }) => theme.colors.tertiary};
   display: flex;
   flex-direction: column;
@@ -38,9 +38,7 @@ export const StyledCarCardsEdit = styled.div`
 
 export const StyledCarCardsContainer = styled.section`
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  flex: 1;
+  display: grid;
+  gap: 1rem; /* O valor 16 em Tailwind se traduz para 1rem em CSS tradicional */
+  grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
 `;
